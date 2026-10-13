@@ -1,0 +1,40 @@
+Package: fkr
+Type: Package
+Title: Realistic Fake Data Generator for the Philippines
+Version: 0.1.0
+Authors@R: c(
+    person(
+      "Bhas", 
+      "Abdulsamad", 
+      email = "aeabdulsamad@gmail.com",
+      comment = c(ORCID = "0009-0002-5891-8124"),
+      role = c("aut", "cre", "cph")
+    )
+  )
+Description: Generates realistic, locale-aware synthetic data for the
+    Philippines, covering both personal data (names, ages, birthdays,
+    contact details, addresses, government-ID-style numbers) and
+    business data (company names, industries, job titles, products,
+    prices, and permit numbers). Every value, including anything
+    formatted to resemble a government identifier, is drawn uniformly
+    at random for software testing, prototyping, and teaching, and
+    does not correspond to any real person, business, or record.
+License: MIT + file LICENSE
+URL: https://github.com/yng-me/fkr
+BugReports: https://github.com/yng-me/fkr/issues
+Encoding: UTF-8
+Depends:
+    R (>= 3.5.0)
+Imports:
+    stats,
+    phscs,
+    psgc
+Suggests:
+    curl,
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
+VignetteBuilder: knitr
+Config/testthat/edition: 3
+RoxygenNote: 7.3.3
+Roxygen: list(markdown = TRUE)

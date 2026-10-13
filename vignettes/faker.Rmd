@@ -1,0 +1,298 @@
+---
+title: "Getting Started with fkr"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Getting Started with fkr}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+```
+
+```{r setup}
+library(fkr)
+```
+
+## What does this package do?
+
+**fkr** makes pretend (fake) data that looks like it came from the Philippines
+-- names, addresses, phone numbers, ages, job titles, and more -- without using
+any real person's information.
+
+Why would you want "fake" data?
+
+- You're building an app or a form and want to **see what it looks like with
+  data in it**, before any real user has signed up.
+- You're **teaching a class or writing a tutorial** and need realistic-looking
+  example data, without handing out anyone's real details.
+- You're **testing software**: trying it with 10,000 pretend customers is much
+  safer (and easier) than testing with real ones.
+
+Every single value this package produces -- every name, every address, every
+number -- is made up on the spot. Nothing is looked up from a real database of
+real people.
+
+> **A note on ID numbers.** Some functions produce values formatted to look
+> like Philippine government ID numbers (an SSS number, a TIN, a PhilSys
+> number, and so on). These are **entirely random digits arranged in the right
+> pattern** -- they are not real ID numbers, they don't belong to anyone, and
+> they will not work if you try to use them anywhere official. They exist only
+> so that test data looks complete.
+
+## Installing fkr
+
+If this is your first time, you'll need R installed on your computer (see
+[r-project.org](https://www.r-project.org)). Once R is running, install fkr
+with:
+
+```r
+# install.packages("devtools")
+pak::pak("yng-me/fkr")
+```
+
+Then, every time you want to use it, start your R session with:
+
+```{r, eval = FALSE}
+library(fkr)
+```
+
+## Your first fake value
+
+Every function in this package starts with `fkr_`, so they're easy to spot
+and to search for. Let's make one fake first name:
+
+```{r}
+fkr_first_name(1)
+```
+
+That `1` tells the function "I want **one** value." Want five instead? Change
+the `1` to a `5`:
+
+```{r}
+fkr_first_name(5)
+```
+
+That's the pattern for *everything* in this package: the first thing you tell
+a `fkr_*` function is always **how many fake values you want**.
+
+```{r}
+fkr_age(5)
+fkr_boolean(5)
+fkr_civil_status(5)
+```
+
+## A quick tour of what you can generate
+
+### People
+
+```{r}
+fkr_first_name(3)
+fkr_last_name(3)
+fkr_full_name(3)
+fkr_sex(3)
+fkr_civil_status(3)
+fkr_age(3)
+fkr_birthday(3)
+```
+
+### Contact details
+
+```{r}
+fkr_email(3)
+fkr_mobile_number(3)
+fkr_landline_number(3)
+```
+
+### Addresses and places in the Philippines
+
+```{r}
+fkr_region(3)
+fkr_province(3)
+fkr_city(3)
+fkr_barangay(3)
+fkr_street_address(3)
+```
+
+Need a full, ready-made address (street, barangay, city, province, region, and
+ZIP code, all matching each other)? There's a function for that too, and it
+gives you back a small table instead of a single value:
+
+```{r}
+fkr_address(3)
+```
+
+### Government ID-style numbers
+
+As mentioned above, these are random digits in the right pattern -- not real
+IDs.
+
+```{r}
+fkr_sss_number(3)
+fkr_tin_number(3)
+fkr_philhealth_number(3)
+fkr_pagibig_number(3)
+fkr_philsys_number(3)
+```
+
+### Businesses and jobs
+
+```{r}
+fkr_company(3)
+fkr_job_title(3)
+fkr_industry(3)
+fkr_product(3)
+fkr_price(3)
+```
+
+### Small, general-purpose helpers
+
+These aren't Philippines-specific -- they're handy building blocks for any
+fake dataset.
+
+```{r}
+fkr_num(5, min = 0, max = 100)          # plain numbers, e.g. a score or a rating
+fkr_int(5, min = 18, max = 65)          # whole numbers, e.g. an age range
+fkr_boolean(5)                          # TRUE / FALSE, e.g. "has a Facebook account?"
+fkr_uuid(3)                             # a unique ID for each record
+```
+
+Two more worth a closer look:
+
+**`fkr_multiple_response()`** pretends to be a survey question where someone
+can pick more than one answer (a "select all that apply" question):
+
+```{r}
+fkr_multiple_response(5, values = c("Email", "Phone", "SMS"), sep = ", ")
+```
+
+**`fkr_factor()`** creates a fake *category* column, where each code has a
+friendlier label attached -- similar to how survey or statistics software
+lets you store `1`/`2` but *display* "Male"/"Female":
+
+```{r}
+fkr_factor(5, values = c(1, 2), labels = c("Male", "Female"))
+```
+
+You can also attach a short description of the whole column (not each value)
+using `label`:
+
+```{r}
+sex <- fkr_factor(
+  5,
+  values = c(1, 2), labels = c("Male", "Female"),
+  label = "Respondent's biological sex"
+)
+sex
+attr(sex, "label")
+```
+
+## Building a whole pretend dataset at once
+
+So far we've made one column at a time. Most of the time, though, you want a
+whole **table** of fake data -- like a spreadsheet with many columns and many
+rows, where each row is one pretend person or one pretend record.
+
+That's what the `fkr()` function is for. You give it:
+
+1. `n`: how many rows (pretend people) you want, and
+2. `specs`: a list that says, **for each column, which `fkr_*` function
+   should fill it in**.
+
+```{r}
+fkr(5, list(
+  first_name = fkr_first_name,
+  last_name = fkr_last_name,
+  sex = fkr_sex,
+  age = fkr_age,
+  date_of_birth = fkr_birthday,
+  mobile_number = fkr_mobile_number
+))
+```
+
+Notice that we wrote `fkr_first_name`, not `fkr_first_name()` -- no
+parentheses. We're telling `fkr()` *which tool to use* for that column; it
+takes care of calling it the right number of times for you.
+
+If a column's generator gives back a whole mini-table of its own -- like
+`fkr_address()` does -- `fkr()` automatically spreads its pieces out into
+separate columns, named after the column you asked for:
+
+```{r}
+fkr(3, list(
+  name = fkr_full_name,
+  address = fkr_address
+))
+```
+
+### Fixing extra settings for a column
+
+Some generators accept extra settings. For example, `fkr_city()` can be
+limited to one province. To use that inside `fkr()`, wrap it in a small
+"recipe":
+
+```{r}
+fkr(5, list(
+  city_in_cebu = function(n) fkr_city(n, province = "Cebu")
+))
+```
+
+Read `function(n) fkr_city(n, province = "Cebu")` as: "to make this column,
+call `fkr_city`, asking for `n` values, always from the province of Cebu."
+
+### Making one column depend on another
+
+Sometimes a column's value should depend on another column you already made
+-- for example, whether someone is a "Minor" or an "Adult" depends on their
+`age`. Add a second ingredient, `data`, to see the columns built so far:
+
+```{r}
+fkr(6, list(
+  age = fkr_age,
+  stage = function(n, data) ifelse(data$age < 18, "Minor", "Adult")
+))
+```
+
+## Keeping an age and a birthday that agree with each other
+
+If you ask for both an `age` column and a birthday column in the *same*
+`fkr()` call, fkr is smart about it: it makes sure the birthday it
+generates actually matches the age in that same row. You don't have to do
+anything extra -- just ask for both, by name, as shown below:
+
+```{r}
+people <- fkr(5, list(
+  age = fkr_age,
+  date_of_birth = fkr_birthday
+))
+people
+```
+
+(If you ever *want* them to be unrelated -- unusual, but possible -- wrap one
+of them in `function(n) ...`, the same trick shown above for "extra settings."
+That tells fkr you're taking manual control of that column.)
+
+## Making your "random" results repeatable
+
+Everything in this package is random by design -- that's the point of fake
+data! But sometimes you want to **get the exact same fake data again**, for
+example to write a tutorial where your readers see the same numbers you did.
+
+Call `fkr_seed()` with any whole number right before generating your data:
+
+```{r}
+fkr_seed(2024)
+fkr_first_name(3)
+
+fkr_seed(2024)
+fkr_first_name(3) # identical to the line above
+```
+
+## Where to go next
+
+- Every function has its own help page. In R, type a question mark followed
+  by the function's name, e.g. `?fkr_address`, to see exactly what settings
+  it accepts.
+- The package's README has a shorter, at-a-glance summary of everything
+  covered here.
