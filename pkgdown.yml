@@ -3,7 +3,7 @@ pkgdown: 2.2.1
 pkgdown_sha: ~
 articles:
   faker: faker.html
-last_built: 2026-10-13T16:20Z
+last_built: 2026-10-13T16:22Z
 urls:
   reference: https://yng-me.github.io/fkr/reference
   article: https://yng-me.github.io/fkr/articles
