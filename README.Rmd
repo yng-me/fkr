@@ -13,6 +13,7 @@ knitr::opts_chunk$set(
 # fkr
 
 <!-- badges: start -->
+[![CRAN status](https://www.r-pkg.org/badges/version/fkr)](https://CRAN.R-project.org/package=fkr)
 [![R-CMD-check](https://github.com/yng-me/fkr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/yng-me/fkr/actions/workflows/R-CMD-check.yaml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/yng-me/fkr/blob/main/LICENSE.md)
 <!-- badges: end -->
@@ -31,8 +32,12 @@ anywhere official.
 ## Installation
 
 ```r
-install.packages("remotes")
-remotes::install_github("yng-me/fkr")
+# CRAN
+install.packages('fkr')
+
+# GitHub
+# install.packages("devtools")
+pak::pak("yng-me/fkr")
 ```
 
 ## Quick start
