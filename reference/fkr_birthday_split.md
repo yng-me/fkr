@@ -44,9 +44,9 @@ A `data.frame` with `n` rows and character columns `year` (`"YYYY"`),
 ``` r
 fkr_birthday_split(5)
 #>   year month day
-#> 1 2023    12  29
-#> 2 1990    05  19
-#> 3 2019    01  19
-#> 4 1996    04  24
-#> 5 2019    11  01
+#> 1 2024    01  08
+#> 2 1990    05  29
+#> 3 2019    01  29
+#> 4 1996    05  04
+#> 5 2019    11  11
 ```

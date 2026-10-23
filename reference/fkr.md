@@ -81,11 +81,11 @@ fkr(5, list(
   coordinates = fkr_coordinates
 ))
 #>   first_name last_name    sex age date_of_birth       address_street
-#> 1    Raymond Dela Cruz   Male   6    2020-03-26 422 Magsaysay Avenue
-#> 2    Lazarus    Cortez   Male   9    2017-07-30        111 Luna Road
-#> 3     Joseph Dela Cruz   Male  16    2010-10-10 404 Aguinaldo Avenue
-#> 4      Quinn    Javier   Male  47    1979-01-10 924 Magsaysay Avenue
-#> 5     Tamara    Garcia Female   4    2022-07-29     532 Luna Highway
+#> 1    Raymond Dela Cruz   Male   6    2020-04-05 422 Magsaysay Avenue
+#> 2    Lazarus    Cortez   Male   9    2017-08-09        111 Luna Road
+#> 3     Joseph Dela Cruz   Male  16    2010-10-20 404 Aguinaldo Avenue
+#> 4      Quinn    Javier   Male  47    1979-01-20 924 Magsaysay Avenue
+#> 5     Tamara    Garcia Female   4    2022-08-08     532 Luna Highway
 #>   address_barangay         address_city  address_province
 #> 1          Malinta               Bontoc Mountain Province
 #> 2         Tagumpay        Batangas City          Batangas

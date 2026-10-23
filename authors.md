@@ -8,7 +8,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/yng-me/fkr/blob/v0.1.0/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/yng-me/fkr/blob/main/DESCRIPTION)
 
 Abdulsamad B (2026). *fkr: Realistic Fake Data Generator for the
 Philippines*. R package version 0.1.0, <https://github.com/yng-me/fkr>.

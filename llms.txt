@@ -15,8 +15,12 @@ won’t work anywhere official.
 
 ``` r
 
-install.packages("remotes")
-remotes::install_github("yng-me/fkr")
+# CRAN
+install.packages('fkr')
+
+# GitHub
+# install.packages("devtools")
+pak::pak("yng-me/fkr")
 ```
 
 ## Quick start
@@ -29,20 +33,16 @@ Every function starts with `fkr_`. The first thing you tell it is always
 library(fkr)
 
 fkr_full_name(3)
-#> [1] "Tanisha Magsino" "Socorro Cunanan" "Joyce Alcantara"
+#> [1] "Pancho Ocampo"    "Quintessa Isip"   "Orella De Castro"
 fkr_age(3)
-#> [1]  2 50  1
+#> [1] 12  8  9
 fkr_mobile_number(3)
-#> [1] "09910021516" "09187189635" "09489378455"
+#> [1] "09283870905" "09060471203" "08976742579"
 fkr_address(3)
-#>                       street   barangay        city         province
-#> 1         464 Legarda Avenue San Isidro Iligan City  Lanao del Norte
-#> 2        366 Recto Extension   Maligaya Butuan City Agusan del Norte
-#> 3 342 Shaw Boulevard Highway      Tibig   Las Piñas     Metro Manila
-#>                          region  zip
-#> 1  Region X (Northern Mindanao) 9200
-#> 2          Region XIII (Caraga) 8600
-#> 3 National Capital Region (NCR) 1740
+#>                        street   barangay        city       province                        region  zip
+#> 1 79 Marcos Highway Extension  Katipunan  Valenzuela   Metro Manila National Capital Region (NCR) 1440
+#> 2   218 Marcos Highway Avenue Buenavista Maasin City Southern Leyte Region VIII (Eastern Visayas) 6600
+#> 3          622 Luna Extension      Tibig  Vigan City     Ilocos Sur      Region I (Ilocos Region) 2700
 ```
 
 Want a whole pretend dataset – many columns, many rows – in one go? Use
@@ -59,11 +59,11 @@ fkr(5, list(
   date_of_birth = fkr_birthday
 ))
 #>   first_name last_name    sex age date_of_birth
-#> 1     Jordan  Abubakar Female   6    2020-10-07
-#> 2       Iris  Gonzales   Male   6    2020-02-28
-#> 3     Editha Dela Cruz   Male   6    2020-07-12
-#> 4     Warren Natividad   Male   5    2021-07-25
-#> 5    Loretta   Mahinay   Male  15    2011-10-13
+#> 1       Iman Dela Cruz Female  22    2004-01-31
+#> 2     Hubert   Barrera Female  11    2015-08-18
+#> 3    Cybille    Santos Female  36    1990-08-14
+#> 4     Jaybee   De Dios Female   1    2025-10-09
+#> 5    Rolando    Garcia   Male  41    1985-04-16
 ```
 
 `age` and `date_of_birth` automatically agree with each other – fkr

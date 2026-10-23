@@ -103,7 +103,7 @@ fkr_civil_status(3)
 fkr_age(3)
 #> [1]  9 12  7
 fkr_birthday(3)
-#> [1] "2022-12-22" "2011-03-24" "2013-04-10"
+#> [1] "2023-01-01" "2011-04-03" "2013-04-20"
 ```
 
 ### Contact details
@@ -279,11 +279,11 @@ fkr(5, list(
   mobile_number = fkr_mobile_number
 ))
 #>   first_name last_name    sex age date_of_birth mobile_number
-#> 1  Katherine   Quijano   Male  15    2011-06-21   09656100892
-#> 2    Emerald    Zamora   Male   5    2021-08-17   09179377460
-#> 3      Xandy  Custodio Female  32    1994-10-03   09261872134
-#> 4      Qamra Dela Cruz Female  58    1968-09-30   09062002832
-#> 5     Dennis   Marcelo   Male  10    2016-03-12   09790073591
+#> 1  Katherine   Quijano   Male  15    2011-07-01   09656100892
+#> 2    Emerald    Zamora   Male   5    2021-08-27   09179377460
+#> 3      Xandy  Custodio Female  32    1994-10-13   09261872134
+#> 4      Qamra Dela Cruz Female  58    1968-10-10   09062002832
+#> 5     Dennis   Marcelo   Male  10    2016-03-22   09790073591
 ```
 
 Notice that we wrote `fkr_first_name`, not
@@ -378,11 +378,11 @@ people <- fkr(5, list(
 ))
 people
 #>   age date_of_birth
-#> 1   0    2026-07-07
-#> 2   2    2024-06-26
-#> 3   0    2026-07-15
-#> 4  26    2000-03-24
-#> 5  51    1975-06-10
+#> 1   0    2026-07-17
+#> 2   2    2024-07-06
+#> 3   0    2026-07-25
+#> 4  26    2000-04-03
+#> 5  51    1975-06-20
 ```
 
 (If you ever *want* them to be unrelated – unusual, but possible – wrap
